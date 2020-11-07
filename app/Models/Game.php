@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'publisher',
+        'developer',
+        'release_date'];
+
+    //public function reviews(){
+        //return $this->hasMany('App\Models\Review');
+    //}
 }

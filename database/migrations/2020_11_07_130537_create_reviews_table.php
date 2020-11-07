@@ -18,8 +18,10 @@ class CreateReviewsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->dateTime('date_posted')->nullable();
-            $table->integer('rating')->range(1,10);
+            $table->integer('rating');
             $table->timestamps();
+            //$table->unsignedBigInteger('game_id');
+            //$table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
         });
     }
 
