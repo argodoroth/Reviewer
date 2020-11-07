@@ -14,6 +14,8 @@ class GameTableSeeder extends Seeder
      */
     public function run()
     {
+        $games = Game::factory()->count(3)->create();
+        /*
         $a = new Game;
         $a->name = "Skyrim";
         $a->developer = "Bethesda Game Studios";
@@ -27,5 +29,6 @@ class GameTableSeeder extends Seeder
         $b->publisher = "Rockstar";
         $b->release_date = '1997-10-21';
         $b->save();
+        */
     }
 }
