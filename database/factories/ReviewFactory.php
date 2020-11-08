@@ -21,11 +21,15 @@ class ReviewFactory extends Factory
      */
     public function definition()
     {
+
+        $userCount = \App\Models\User::all()->count();
         return [
             'Title' => $this->faker->realText(50,1),
             'Description' => $this->faker->realText(200,2),
             'rating' => $this->faker->numberBetween(1,10),
-            'date_posted' => $this->faker->dateTime
+            'date_posted' => $this->faker->dateTime,
+            'user_id' => $this->faker->numberBetween(1,$userCount)
+            //Will give a random value for user id
         ];
     }
 }
