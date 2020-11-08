@@ -42,7 +42,7 @@ class User extends Authenticatable
     ];
 
     public function games(){
-        return $this->belongsToMany('App\Models\Game');
+        return $this->hasMany('App\Models\Game');
     }
 
     public function reviews(){

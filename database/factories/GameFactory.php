@@ -22,11 +22,13 @@ class GameFactory extends Factory
      */
     public function definition()
     {
+        $userCount = \App\Models\User::all()->count();
         return [
             'name' => $this->faker->name,
             'publisher' => $this->faker->name,
             'developer' => $this->faker->name,
-            'release_date' => $this->faker->dateTime
+            'release_date' => $this->faker->dateTime,
+            'user_id' => $this->faker->numberBetween(1,$userCount)
         ];
     }
 }

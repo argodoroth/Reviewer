@@ -20,6 +20,9 @@ class CreateGamesTable extends Migration
             $table->string('developer');
             $table->dateTime('release_date')->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->
+            onDelete('cascade')->onUpdate('cascade');
         });
     }
 

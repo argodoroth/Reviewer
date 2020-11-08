@@ -19,13 +19,13 @@ class GameTableSeeder extends Seeder
         has(\App\Models\Review::factory()->count(3))->create();
         
         //get all 
-        $users = \App\Models\User::all();
+        $players = \App\Models\Player::all();
         
         //For each on games, grab 5-10 random users and attaches to each game
         //populating the pivot table
-        \App\Models\Game::all()->each(function ($game) use ($users) {
-            $game->users()->attach(
-                $users->random(rand(5,10))->pluck('id')->toArray()
+        \App\Models\Game::all()->each(function ($game) use ($players) {
+            $game->players()->attach(
+                $players->random(rand(5,10))->pluck('id')->toArray()
             );
         });
     }
