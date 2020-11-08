@@ -21,7 +21,7 @@ class GameTableSeeder extends Seeder
         //get all 
         $players = \App\Models\Player::all();
         
-        //For each on games, grab 5-10 random users and attaches to each game
+        //For each on games, grab 5-10 random playerrs and attaches to each game
         //populating the pivot table
         \App\Models\Game::all()->each(function ($game) use ($players) {
             $game->players()->attach(
