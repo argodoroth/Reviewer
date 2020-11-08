@@ -23,6 +23,9 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('game_id');
             $table->foreign('game_id')->references('id')->on('games')->
             onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->
+            onDelete('cascade')->onUpdate('cascade');
         });
     }
 

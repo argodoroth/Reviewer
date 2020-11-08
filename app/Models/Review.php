@@ -18,4 +18,8 @@ class Review extends Model
     public function game(){
         return $this->belongsTo('App\Models\Game');
     }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }

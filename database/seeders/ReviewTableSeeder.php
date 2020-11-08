@@ -14,7 +14,7 @@ class ReviewTableSeeder extends Seeder
      */
     public function run()
     {
-        //$reviews = Review::factory()->count(3)->create();
+        $reviews = Review::factory()->count(3)->create();
         
         $a = new Review;
         $a->Title = "Great game, too short";

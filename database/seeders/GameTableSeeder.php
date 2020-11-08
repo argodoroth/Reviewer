@@ -14,8 +14,18 @@ class GameTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Game::factory()->count(3)->
+        Game::factory()->count(20)->
         has(\App\Models\Review::factory()->count(3))->create();
+        
+        //get all 
+        $users = \App\Models\User::all();
+        
+        //For each on games, grab 5-10 random users and attach
+        \App\Models\Game::all()->each(function ($game) use ($users) {
+            $game->users()->attach(
+                $users->random(rand(5,10))->pluck('id')->toArray()
+            );
+        });
         /*
         $a = new Game;
         $a->name = "Skyrim";
