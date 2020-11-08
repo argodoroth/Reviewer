@@ -14,7 +14,8 @@ class GameTableSeeder extends Seeder
      */
     public function run()
     {
-        $games = Game::factory()->count(3)->create();
+        \App\Models\Game::factory()->count(3)->
+        has(\App\Models\Review::factory()->count(3))->create();
         /*
         $a = new Game;
         $a->name = "Skyrim";
