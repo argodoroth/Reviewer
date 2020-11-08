@@ -14,7 +14,7 @@ class Game extends Model
         'developer',
         'release_date'];
 
-    //public function reviews(){
-        //return $this->hasMany('App\Models\Review');
-    //}
+    public function reviews(){
+        return $this->hasMany('App\Models\Review');
+    }
 }

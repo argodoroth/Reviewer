@@ -22,8 +22,8 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'Title' => $this->faker->sentence(8),
-            'Description' => $this->faker->name,
+            'Title' => $this->faker->realText(50,1),
+            'Description' => $this->faker->realText(200,2),
             'rating' => $this->faker->numberBetween(1,10),
             'date_posted' => $this->faker->dateTime
         ];

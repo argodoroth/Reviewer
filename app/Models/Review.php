@@ -15,7 +15,7 @@ class Review extends Model
         'rating',
         'date_posted'];
 
-    //public function game(){
-        //return $this->belongsTo('App\Models\Game');
-    //}
+    public function game(){
+        return $this->belongsTo('App\Models\Game');
+    }
 }
