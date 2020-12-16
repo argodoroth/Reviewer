@@ -14,7 +14,7 @@ class GameTableSeeder extends Seeder
      */
     public function run()
     {
-        //Creates a game with a review child, giving it a game id
+        //Creates a game with a review child, giving it a game id using factories
         Game::factory()->count(20)->
         has(\App\Models\Review::factory()->count(3))->create();
         

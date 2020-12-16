@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\GameController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/home/{name}', function($name){
@@ -22,7 +22,7 @@ Route::get('/home/{name}', function($name){
 });
 
 Route::get('/other',function(){
-    return "this is a page of other stuff";
+    return "OTHER PAGE";
 });
 
 Route::redirect('/else','/other');
@@ -30,3 +30,17 @@ Route::redirect('/else','/other');
 Route::get('/random', function(){
     return "RANDOM AKSDHJLAKDLAKSJDAKL";
 });
+
+Route::get('/games', 'App\Http\Controllers\GameController@index')->name('games.index');
+
+//Passes data from route to gameData view
+Route::any('gameData/{data}', function($data){
+    return view('gameData', ['data'=>$data]);
+});
+
+//Creates a route to show a game and names it games.show
+Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show');
+
+//Creates a route to make a new game and is then able to post to index page
+Route::get('games/create', 'App\Http\Controllers\GameController@create')->name('games.create');
+Route::post('games','App\Http\Controllers\GameController@store')->name('games.store');
