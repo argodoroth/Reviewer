@@ -38,9 +38,9 @@ Route::any('gameData/{data}', function($data){
     return view('gameData', ['data'=>$data]);
 });
 
-//Creates a route to show a game and names it games.show
-Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show');
-
 //Creates a route to make a new game and is then able to post to index page
-Route::get('games/create', 'App\Http\Controllers\GameController@create')->name('games.create');
 Route::post('games','App\Http\Controllers\GameController@store')->name('games.store');
+Route::get('games/create', 'App\Http\Controllers\GameController@create')->name('games.create');
+
+Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show');
+Route::delete('games/{id}','App\Http\Controllers\GameController@destroy')->name('games.destroy');

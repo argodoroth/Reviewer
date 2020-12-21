@@ -10,11 +10,11 @@
        <li>publisher: {{$game->publisher}}</li>
        <li>developer: {{$game->developer}}</li>
     </ul>
-    <!--
-    <form action={"{route('games.destroy',['id' => $game->id])}}" method="post">
+    
+    <form action="{{route('games.destroy',['id' => $game->id])}}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>
     </form>
-    -->
+    
 @endsection

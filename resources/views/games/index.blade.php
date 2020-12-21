@@ -10,7 +10,7 @@
         @endforeach
     </ul>
 
-    <!--
-    <a href={"{route('games.create')}}">Create Game</a>
-    -->
+    
+    <a href="{{route('games.create')}}">Create Game</a>
+
 @endsection

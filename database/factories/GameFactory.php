@@ -27,7 +27,7 @@ class GameFactory extends Factory
             'name' => $this->faker->realText(50,1),
             'publisher' => $this->faker->name,
             'developer' => $this->faker->name,
-            'release_date' => $this->faker->dateTime,
+            'release_date' => $this->faker->date,
             'user_id' => $this->faker->numberBetween(1,$userCount)
         ];
     }
