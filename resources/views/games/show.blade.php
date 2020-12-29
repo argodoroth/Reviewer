@@ -10,6 +10,7 @@
     <p>release date: {{$game->release_date ?? 'unknown'}}</p>
     <p>publisher: {{$game->publisher}}</p>
     <p>developer: {{$game->developer}}</p>
+    <p>current user: {{Auth::id()}}</p>
     
     <form action="{{route('games.destroy',['id' => $game->id])}}" method="POST">
         @csrf
@@ -47,7 +48,6 @@
                     //Show only the reviews for the current
                     const data = response.data;
                     this.reviews = data.filter(review => review.game_id == <?php Print($game->id); ?>);
-                    
                 })
                 .catch(response => {
                     console.log(response);
@@ -55,10 +55,13 @@
             },
             methods: {
                 createReview: function(){
+                    //Gets current user who is posting comment
+                    const userID = <?php Print(Auth::id()); ?>;
                     axios.post("{{route('api.reviews.store',['game'=>$game])}}", {
                         title: this.newReviewTitle,
                         description: this.newReviewDesc,
-                        rating: this.newReviewRating
+                        rating: this.newReviewRating,
+                        user: userID
                     })
                     .then(response => {
                         this.reviews.push(response.data);

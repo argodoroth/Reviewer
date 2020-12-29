@@ -38,15 +38,16 @@ class ReviewController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:100',
             'description' => 'required|max:100',
-            'rating' => 'required|integer|between:1,10'
+            'rating' => 'required|integer|between:1,10',
+            'user' => 'required|integer'
         ]);
-
+        //$user = auth()->user();
         //Makes game object then saves to database
         $a = new Review;
         $a->title = $validated['title'];
         $a->description = $validated['description'];
         $a->rating = $validated['rating'];
-        $a->user_id = 2;
+        $a->user_id = $validated['user'];
         $a->game_id = $game->id;
         $a->save();
         return $a;
