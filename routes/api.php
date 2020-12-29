@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('reviews','App\Http\Controllers\ReviewController@apiIndex')->name('api.reviews.index');
+Route::post('reviews/{game}','App\Http\Controllers\ReviewController@apiStore')->name('api.reviews.store');

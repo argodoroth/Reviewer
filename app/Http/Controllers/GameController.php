@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 use App\Models\User;
+use App\Models\Review;
 
 class GameController extends Controller
 {
@@ -104,5 +105,9 @@ class GameController extends Controller
         $game->delete();
 
         return redirect()->route('games.index')->with('message','Game was deleted.');
+    }
+
+    public function page() {
+        return view ('games.show', ['game' => $game]);
     }
 }

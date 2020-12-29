@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
+use App\ServiceContainer;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +14,15 @@ use App\Http\Controllers\GameController;
 |
 */
 
+//can be used to hold API key for outside service etc
+app()->singleton('App\ServiceContainer', function ($app) {
+    return new ServiceContainer();
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::get('/games', 'App\Http\Controllers\GameController@index')->name('games.index')->middleware('auth');
 
