@@ -6,27 +6,36 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <p>name: {{$game->name}}</p>
-    <p>user: {{$game->user->name}}</p>
     <p>release date: {{$game->release_date ?? 'unknown'}}</p>
     <p>publisher: {{$game->publisher}}</p>
     <p>developer: {{$game->developer}}</p>
-    <p>current user: {{Auth::id()}}</p>
-    
-    <form action="{{route('games.destroy',['id' => $game->id])}}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Delete</button>
-    </form>
+    <p>posted by: {{$game->user->name}}
+    @if($game->user_id == Auth::id())
+        <a href="{{route('games.edit',['game' => $game])}}">Edit Game</a>
+        <form action="{{route('games.destroy',['id' => $game->id])}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit">Delete</button>
+        </form>
+    @endif
 
     
     <div id="root">
-        <h3>Post review</h3>
-        Title: <input type="text" id="titInput" v-model="newReviewTitle">
-        Description: <input type="text" id="descInput" v-model="newReviewDesc" size ="30">
-        Rating: <input type="number" id="ratingInput" v-model="newReviewRating" min="1" max="10">
-        <button @click="createReview">post</button>
+        @if(!($game->user_id == Auth::id()))
+            <h3>Post review</h3>
+            Title: <input type="text" id="titInput" v-model="newReviewTitle">
+            Description: <input type="text" id="descInput" v-model="newReviewDesc" size ="30">
+            Rating: <input type="number" id="ratingInput" v-model="newReviewRating" min="1" max="10">
+            <button @click="createReview">post</button>
+        @endif
         <ul>
-            <li v-for="review in reviews">@{{review.title}}<li>
+            <li v-for="review in reviews">
+                <h4>@{{review.title}}</h4>
+                <p>@{{review.description}}</p>
+                <p>Posted by: {{review.user_id}}  Rating: @{{review.rating}}</p> 
+                
+                
+            </li>
         </ul>
     </div>
 

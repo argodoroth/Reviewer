@@ -35,6 +35,9 @@ Route::any('gameData/{data}', function($data){
 Route::post('games','App\Http\Controllers\GameController@store')->name('games.store')->middleware('auth');
 Route::get('games/create', 'App\Http\Controllers\GameController@create')->name('games.create')->middleware('auth');
 
+Route::get('games/edit/{game}', 'App\Http\Controllers\GameController@edit')->name('games.edit')->middleware('auth');
+Route::post('games/{game}', 'App\Http\Controllers\GameController@update')->name('games.update')->middleware('auth');
+
 Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show')->middleware('auth');
 Route::delete('games/{id}','App\Http\Controllers\GameController@destroy')->name('games.destroy')->middleware('auth');
 
