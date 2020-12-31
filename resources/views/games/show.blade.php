@@ -32,7 +32,7 @@
             <li v-for="review in reviews">
                 <h4>@{{review.title}}</h4>
                 <p>@{{review.description}}</p>
-                <p>Posted by: {{review.user_id}}  Rating: @{{review.rating}}</p> 
+                <p>Posted by: @{{review.user_id}}  Rating: @{{review.rating}}</p> 
                 
                 
             </li>

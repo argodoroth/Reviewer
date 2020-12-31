@@ -21,23 +21,25 @@ app()->singleton('App\ServiceContainer', function ($app) {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    
 });
 
+Route::get('/image-upload', 'App\Http\Controllers\ImageController@index')->name('images.upload')->middleware('auth');
+Route::post('/image-upload', 'App\Http\Controllers\ImageController@store')->name('images.store')->middleware('auth');
+Route::get('image-upload/{filename}', 'App\Http\Controllers\ImageController@loadImage')->name('images.displayImage');
+
+//list all games
 Route::get('/games', 'App\Http\Controllers\GameController@index')->name('games.index')->middleware('auth');
-
-//Passes data from route to gameData view
-Route::any('gameData/{data}', function($data){
-    return view('gameData', ['data'=>$data])->middleware('auth');
-});
 
 //Creates a route to make a new game and is then able to post to index page
 Route::post('games','App\Http\Controllers\GameController@store')->name('games.store')->middleware('auth');
 Route::get('games/create', 'App\Http\Controllers\GameController@create')->name('games.create')->middleware('auth');
 
+//Route to edit games
 Route::get('games/edit/{game}', 'App\Http\Controllers\GameController@edit')->name('games.edit')->middleware('auth');
 Route::post('games/{game}', 'App\Http\Controllers\GameController@update')->name('games.update')->middleware('auth');
 
+//Show games and delete them
 Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show')->middleware('auth');
 Route::delete('games/{id}','App\Http\Controllers\GameController@destroy')->name('games.destroy')->middleware('auth');
 

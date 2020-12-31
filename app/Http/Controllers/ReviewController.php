@@ -41,7 +41,6 @@ class ReviewController extends Controller
             'rating' => 'required|integer|between:1,10',
             'user' => 'required|integer'
         ]);
-        //$user = auth()->user();
         //Makes game object then saves to database
         $a = new Review;
         $a->title = $validated['title'];
