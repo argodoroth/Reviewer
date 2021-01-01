@@ -32,7 +32,7 @@
             <li v-for="review in reviews">
                 <h4>@{{review.title}}</h4>
                 <p>@{{review.description}}</p>
-                <p>Posted by: @{{review.user_id}}  Rating: @{{review.rating}}</p> 
+                <p>Posted by: @{{review.username}}  Rating: @{{review.rating}}</p> 
                 
                 
             </li>
@@ -57,6 +57,7 @@
                     //Show only the reviews for the current
                     const data = response.data;
                     this.reviews = data.filter(review => review.game_id == <?php Print($game->id); ?>);
+                    //this.reviews.forEach(review => review.username = review.user_id);
                 })
                 .catch(response => {
                     console.log(response);
@@ -82,7 +83,7 @@
                         console.log(response);
                     })
                 }
-            }
+            },
         });
     </script>
 @endsection

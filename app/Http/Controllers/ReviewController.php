@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -15,6 +16,9 @@ class ReviewController extends Controller
      */
     public function apiIndex(){
         $reviews = Review::all();
+        foreach($reviews as $review){
+            $review->username = User::find($review->user_id)->name;
+        }
         return $reviews;
     }
     /**
@@ -49,6 +53,7 @@ class ReviewController extends Controller
         $a->user_id = $validated['user'];
         $a->game_id = $game->id;
         $a->save();
+        $a->username = User::find($a->user_id)->name;
         return $a;
     }
 

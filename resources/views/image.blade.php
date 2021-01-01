@@ -20,5 +20,6 @@
     </div>     
 </form>
 {{$image = App\Models\Image::find(1)}}
-<img src="storage\app\images\RSskqScZSJwMJY2MpHioUued1RqdTw0Yhg6tMkni.png" alt="Smiley" width ="400" height ="400">
+<img src="http://reviewer.test/storage/images/d3iP57Ptykc6IILEeYIcm039O9UAiEkxry0rgZkV.png" alt="Smiley" width ="40" height ="40">
+
 @endsection
