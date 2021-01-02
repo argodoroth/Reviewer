@@ -43,6 +43,8 @@ Route::post('games/{game}', 'App\Http\Controllers\GameController@update')->name(
 Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show')->middleware('auth');
 Route::delete('games/{id}','App\Http\Controllers\GameController@destroy')->name('games.destroy')->middleware('auth');
 
+Route::get('users/{user}', 'App\Http\Controllers\UserController@show')->name('users.show')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

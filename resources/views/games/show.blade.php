@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Games')
+@section('title',$game->name)
 
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

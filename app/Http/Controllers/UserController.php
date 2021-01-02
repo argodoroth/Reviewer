@@ -14,8 +14,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getUsername($id)
+    public function show(User $user)
     {
-
+        //Make a view and pass it the value of game
+        return view ('account', ['user' => $user]);
     }
 }
