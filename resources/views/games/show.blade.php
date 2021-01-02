@@ -5,6 +5,26 @@
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @if($game->image !=null)
+    <img src={{"http://reviewer.test/" . $game->image->path}} width ="40" height ="40">
+    @elseif($game->user_id == Auth::id())
+    <form method="POST" enctype="multipart/form-data" id="upload-image" action="{{route('images.store.game',['game'=>$game])}}" >
+        @csrf
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="file" name="image" placeholder="Upload Image" id="image">
+                @error('image')
+                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+            </div>
+        </div>     
+    </form>
+    @endif
     <p>name: {{$game->name}}</p>
     <p>release date: {{$game->release_date ?? 'unknown'}}</p>
     <p>publisher: {{$game->publisher}}</p>

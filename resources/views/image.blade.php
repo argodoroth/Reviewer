@@ -19,7 +19,7 @@
         </div>
     </div>     
 </form>
-{{$image = App\Models\Image::find(2)->imageable}}
-<img src="http://reviewer.test/storage/images/d3iP57Ptykc6IILEeYIcm039O9UAiEkxry0rgZkV.png" alt="Smiley" width ="40" height ="40">
+{{$image = App\Models\Image::find(3)}}
+<img src={{"http://reviewer.test/" . $image->path}} alt="Smiley" width ="40" height ="40">
 
 @endsection
