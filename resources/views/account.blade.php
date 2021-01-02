@@ -25,4 +25,5 @@
     @endif
     <p>name: {{$user->name}}</p>
     <p>email: {{$user->email}}</p>
+    <p>gamertag: {{$user->player->gamertag}}
 @endsection

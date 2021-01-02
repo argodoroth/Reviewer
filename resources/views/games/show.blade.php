@@ -29,7 +29,8 @@
     <p>release date: {{$game->release_date ?? 'unknown'}}</p>
     <p>publisher: {{$game->publisher}}</p>
     <p>developer: {{$game->developer}}</p>
-    <p>posted by: {{$game->user->name}}
+    <p>posted by: {{$game->user->name}}</p>
+    <p>player count: {{$game->players->count()}}
     @if($game->user_id == Auth::id())
         <a href="{{route('games.edit',['game' => $game])}}">Edit Game</a>
         <form action="{{route('games.destroy',['id' => $game->id])}}" method="POST">

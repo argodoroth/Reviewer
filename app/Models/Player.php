@@ -14,4 +14,8 @@ class Player extends Model
     public function games(){
         return $this->belongsToMany('App\Models\Game');
     }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 }
