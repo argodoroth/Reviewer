@@ -33,7 +33,7 @@ class ImageController extends Controller
         return view('games.show',['game'=>$game])->with('message','Image Uploaded successfully');
     }
 
-    public function storeUser(Request $request)
+    public function storeUser(Request $request, User $user)
     {
         $validatedData = $request->validate([
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
@@ -46,8 +46,8 @@ class ImageController extends Controller
         $img->name = $name;
         $img->path = $path;
         $img->imageable_type = 'App\Models\User';
-        $img->imageable_id = 1;
+        $img->imageable_id = $user->id;
         $img->save();
-        return redirect('image-upload')->with('message','Image Uploaded successfully');
+        return view('account',['user'=>$user])->with('message','Image Uploaded successfully');
     }
 }
