@@ -24,27 +24,9 @@ class ImageController extends Controller
         $img = new Image;
         $img->name = $name;
         $img->path = $path;
+        $img->imageable_type = 'App\Models\Game';
+        $img->imageable_id = 1;
         $img->save();
         return redirect('image-upload')->with('message','Image Uploaded successfully');
-    }
-
-    
-    public function loadImage($filename)
-    {
-        $path = storage_path('storage/app/public/images/'. $filename);
-
-        if (!Storage::exists($path)) {
-            abort(404);
-        }
-
-        $file = Storage::get($path);
-        $type = Storage::mimeType($path);
-
-        $response = Response::make($file, 200);
-
-        $response->header("Content-Type", $type);
-
-        return $response;
-
     }
 }
