@@ -17,6 +17,7 @@ class ReviewController extends Controller
     public function apiIndex(){
         $reviews = Review::all();
         foreach($reviews as $review){
+            //passes through username to be displayed with reviews
             $review->username = User::find($review->user_id)->name;
         }
         return $reviews;
@@ -46,14 +47,22 @@ class ReviewController extends Controller
             'user' => 'required|integer'
         ]);
         //Makes game object then saves to database
-        $a = new Review;
+        $a = Review::get()->where('user_id', $validated['user'])->where('game_id',$game->id)->first();
+        $updated = true;
+        if ($a == null){
+            $a = new Review;
+            $updated = false;
+        }
         $a->title = $validated['title'];
         $a->description = $validated['description'];
         $a->rating = $validated['rating'];
         $a->user_id = $validated['user'];
         $a->game_id = $game->id;
         $a->save();
+
+        //pass extra information to AJAX functionality
         $a->username = User::find($a->user_id)->name;
+        $a->updated = $updated;
         return $a;
     }
 

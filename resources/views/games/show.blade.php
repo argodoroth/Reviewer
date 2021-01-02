@@ -26,7 +26,7 @@
             Title: <input type="text" id="titInput" v-model="newReviewTitle">
             Description: <input type="text" id="descInput" v-model="newReviewDesc" size ="30">
             Rating: <input type="number" id="ratingInput" v-model="newReviewRating" min="1" max="10">
-            <button @click="createReview">post</button>
+            <button @click="createReview">Post/Edit review</button>
         @endif
         <ul>
             <li v-for="review in reviews">
@@ -57,7 +57,6 @@
                     //Show only the reviews for the current
                     const data = response.data;
                     this.reviews = data.filter(review => review.game_id == <?php Print($game->id); ?>);
-                    //this.reviews.forEach(review => review.username = review.user_id);
                 })
                 .catch(response => {
                     console.log(response);
@@ -74,7 +73,12 @@
                         user: userID
                     })
                     .then(response => {
-                        this.reviews.push(response.data);
+                        if(response.data.updated){
+                            const index = this.reviews.findIndex(review => review.user_id == userID);
+                            this.reviews[index] = response.data;
+                        } else {
+                            this.reviews.push(response.data);
+                        }
                         this.newReviewTitle = '';
                         this.newReviewDesc ='';
                         this.newReviewRating = 1;
