@@ -21,7 +21,7 @@ app()->singleton('App\ServiceContainer', function ($app) {
 
 
 Route::get('/', function () {
-    
+    return redirect(route('games.index'));
 });
 
 Route::get('/image-upload', 'App\Http\Controllers\ImageController@index')->name('images.upload')->middleware('auth');

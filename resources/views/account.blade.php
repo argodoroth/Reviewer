@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endsection
 @section('title',$user->name)
 
 @section('content')
@@ -25,5 +29,4 @@
     @endif
     <p>name: {{$user->name}}</p>
     <p>email: {{$user->email}}</p>
-    <p>gamertag: {{$user->player->gamertag}}
 @endsection

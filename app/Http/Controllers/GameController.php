@@ -113,11 +113,12 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy($id)
     {
+        $game = Game::findOrFail($id);
         $game->delete();
 
-        return redirect()->route('games.index')->with('message','Game was deleted.');
+        return redirect()->route('games.index')->with('message', 'Game was deleted.');
     }
 
     public function page() {

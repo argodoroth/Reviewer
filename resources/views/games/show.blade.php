@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endsection
 @section('title',$game->name)
 
 @section('content')
@@ -25,12 +29,29 @@
         </div>     
     </form>
     @endif
-    <p>name: {{$game->name}}</p>
-    <p>release date: {{$game->release_date ?? 'unknown'}}</p>
-    <p>publisher: {{$game->publisher}}</p>
-    <p>developer: {{$game->developer}}</p>
-    <p>posted by: {{$game->user->name}}</p>
-    <p>player count: {{$game->players->count()}}
+    <div id="mainItem" class="card" style="width: 40rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div>
+        <p>name: {{$game->name}}</p>
+        <p>release date: {{$game->release_date ?? 'unknown'}}</p>
+        <p>publisher: {{$game->publisher}}</p>
+        <p>developer: {{$game->developer}}</p>
+        <p>posted by: {{$game->user->name}}</p>
+        <p>player count: {{$game->players->count()}}
+    </div>
     @if($game->user_id == Auth::id())
         <a href="{{route('games.edit',['game' => $game])}}">Edit Game</a>
         <form action="{{route('games.destroy',['id' => $game->id])}}" method="POST">

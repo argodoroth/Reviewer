@@ -1,0 +1,17 @@
+p {
+    color: black;
+}
+body {
+    background-color: gold;
+}
+
+#mainItem {
+    align-content: center;
+    margin: auto;
+    background-color: white;
+}
+
+#user{
+    list-style-type: none;
+    align-content: center;
+}
