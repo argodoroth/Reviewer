@@ -45,6 +45,16 @@
                 </li>
             </form>
             @endif
+            @if($user->isCreator == 'true')
+            <li class="list-group-item"><b>Creator</b>
+            @else
+            <form method="POST" action="{{route('users.creator')}}">
+                @csrf
+                <li class="list-group-item">
+                    <input type="submit" value="Request creator">
+                </li>
+            </form>
+            @endif
         </ul>
     </div>
 @endsection

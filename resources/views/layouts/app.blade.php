@@ -39,17 +39,19 @@
                 </div>
                 <ul class="nav navbar-nav">
                     @if(Auth::id() != null)
-                    <li><a href="{{route('games.index')}}">games</a></li>
-                    <li><a href="{{route('games.create')}}">create</a></li>
-                    <li><a href="{{route('users.show',['user'=>Auth::id()])}}">account</a></li>
-                    <li><a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a></li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                        <li><a href="{{route('games.index')}}">games</a></li>
+                        @if(Auth::user()->isCreator=='true')
+                            <li><a href="{{route('games.create')}}">create</a></li>
+                        @endif
+                        <li><a href="{{route('users.show',['user'=>Auth::id()])}}">account</a></li>
+                        <li><a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     @else
                         @guest
                         @if (Route::has('login'))

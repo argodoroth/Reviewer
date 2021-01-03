@@ -24,7 +24,7 @@ class GameFactory extends Factory
     {
         $userCount = \App\Models\User::all()->count();
         return [
-            'name' => $this->faker->realText(50,1),
+            'name' => $this->faker->realText(20,1),
             'publisher' => $this->faker->name,
             'developer' => $this->faker->name,
             'release_date' => $this->faker->date,

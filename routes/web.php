@@ -45,7 +45,8 @@ Route::post('games/{game}', 'App\Http\Controllers\GameController@update')->name(
 Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show')->middleware('auth');
 Route::delete('games/{id}','App\Http\Controllers\GameController@destroy')->name('games.destroy')->middleware('auth');
 
-Route::post('users', 'App\Http\Controllers\UserController@gamertag')->name('users.gamertag')->middleware('auth');
+Route::post('user-gamertag', 'App\Http\Controllers\UserController@gamertag')->name('users.gamertag')->middleware('auth');
+Route::post('user-creator', 'App\Http\Controllers\UserController@setCreator')->name('users.creator')->middleware('auth');
 Route::get('users/{user}', 'App\Http\Controllers\UserController@show')->name('users.show')->middleware('auth');
 
 Route::post('users/{user}', 'App\Http\Controllers\ImageController@storeUser')->name('images.store.user')->middleware('auth');

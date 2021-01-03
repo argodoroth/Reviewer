@@ -33,4 +33,11 @@ class UserController extends Controller
         }
         return redirect()->route('users.show',['user'=>Auth::user()]);
     }
+
+    public function setCreator(Request $request){
+        $user = Auth::user();
+        $user->isCreator = 'true';
+        $user->save();
+        return redirect()->route('users.show',['user'=>Auth::user()]);
+    }
 }
