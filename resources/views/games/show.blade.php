@@ -4,63 +4,59 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 @endsection
+
 @section('title',$game->name)
 
 @section('content')
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    @if($game->image !=null)
-    <img src={{"http://reviewer.test/" . $game->image->path}} width ="40" height ="40">
-    @elseif($game->user_id == Auth::id())
-    <form method="POST" enctype="multipart/form-data" id="upload-image" action="{{route('images.store.game',['game'=>$game])}}" >
-        @csrf
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <input type="file" name="image" placeholder="Upload Image" id="image">
-                @error('image')
-                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-                </div>
-            </div>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-            </div>
-        </div>     
-    </form>
-    @endif
-    <div id="mainItem" class="card" style="width: 40rem;">
-        <img class="card-img-top" src="..." alt="Card image cap">
+    
+    <div id="mainItem" class="card" style="width: 60rem;">
+        @if($game->image != null)
+        <img class="card-img-top" src={{"http://reviewer.test/" . $game->image->path}} width="100" height="100">
+        @elseif($game->user_id == Auth::id())
+            <p>Upload Game image:</p> 
+            <form method="POST" enctype="multipart/form-data" id="upload-image" action="{{route('images.store.game',['game'=>$game])}}" >
+                @csrf
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="file" name="image" placeholder="Upload Image" id="image">
+                        @error('image')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                    </div>
+                </div>     
+            </form>
+        @endif
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h2 class="card-title"><b>{{$game->name}}</b></h2>
+            <p class="card-text"><b>Posted by: {{$game->user->name}}</b></p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Publisher: {{$game->publisher}}</li>
+            <li class="list-group-item">Developer: {{$game->developer}}</li>
+            <li class="list-group-item">player count: {{$game->players->count()}}</li>
         </ul>
         <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+        @if($game->user_id == Auth::id())
+            <a href="{{route('games.edit',['game' => $game])}}" class="card-link">Edit Game</a>
+            <a href="{{route('games.destroy',['id' => $game->id])}}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('delete-form').submit();">
+                        {{ __('delete game') }}
+                </a>
+                <form id="delete-form" action="{{route('games.destroy',['id' => $game->id])}}" method="POST" class="d-none">
+                    @csrf
+                    @method('DELETE')
+                </form>
+        @endif
         </div>
     </div>
-        <p>name: {{$game->name}}</p>
-        <p>release date: {{$game->release_date ?? 'unknown'}}</p>
-        <p>publisher: {{$game->publisher}}</p>
-        <p>developer: {{$game->developer}}</p>
-        <p>posted by: {{$game->user->name}}</p>
-        <p>player count: {{$game->players->count()}}
-    </div>
-    @if($game->user_id == Auth::id())
-        <a href="{{route('games.edit',['game' => $game])}}">Edit Game</a>
-        <form action="{{route('games.destroy',['id' => $game->id])}}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Delete</button>
-        </form>
-    @endif
-
     
     <div id="root">
         @if(!($game->user_id == Auth::id()))
