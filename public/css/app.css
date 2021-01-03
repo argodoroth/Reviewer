@@ -11,6 +11,11 @@ body {
     background-color: white;
 }
 
+#input {
+    align-content: center;
+    margin: auto;
+}
+
 #user{
     list-style-type: none;
     align-content: center;

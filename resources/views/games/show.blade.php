@@ -60,19 +60,26 @@
     
     <div id="root">
         @if(!($game->user_id == Auth::id()))
-            <h3>Post review</h3>
-            Title: <input type="text" id="titInput" v-model="newReviewTitle">
-            Description: <input type="text" id="descInput" v-model="newReviewDesc" size ="30">
-            Rating: <input type="number" id="ratingInput" v-model="newReviewRating" min="1" max="10">
-            <button @click="createReview">Post/Edit review</button>
+            <div id="input" style = "align-content: center; margin: auto; text-align: center;">
+                <h3>Post review</h3>
+                Title: <input type="text" id="titInput" v-model="newReviewTitle">
+                Description: <input type="text" id="descInput" v-model="newReviewDesc" size ="30">
+                Rating: <input type="number" id="ratingInput" v-model="newReviewRating" min="1" max="10">
+                <button @click="createReview">Post/Edit review</button>
+            </div>
         @endif
         <ul>
-            <li v-for="review in reviews">
-                <h4>@{{review.title}}</h4>
-                <p>@{{review.description}}</p>
-                <p>Posted by: @{{review.username}}  Rating: @{{review.rating}}</p> 
-                
-                
+            <li v-for="review in reviews" style = "list-style-type: none;">
+                <div id="mainItem" class="card" style="width: 40rem; ">
+                    <div class="card-body">
+                        <h4 class="card-title"><b>@{{review.title}}</b></h4>
+                        <p class="card-text"><b>Posted by: @{{review.username}}</b></p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">@{{review.description}}</li>
+                        <li class="list-group-item">Rating: @{{review.rating}}</li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>
