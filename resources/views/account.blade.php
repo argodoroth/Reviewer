@@ -41,7 +41,7 @@
                 @csrf
                 <li class="list-group-item">
                     <input type="text" name="gamertag" value={{old('gamertag')}}>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Add Gamertag">
                 </li>
             </form>
             @endif

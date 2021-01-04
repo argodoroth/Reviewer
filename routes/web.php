@@ -39,7 +39,7 @@ Route::get('games/create', 'App\Http\Controllers\GameController@create')->name('
 
 //Route to edit games
 Route::get('games/edit/{game}', 'App\Http\Controllers\GameController@edit')->name('games.edit')->middleware('auth');
-Route::post('games/{game}', 'App\Http\Controllers\GameController@update')->name('games.update')->middleware('auth');
+Route::post('games/edit/{game}', 'App\Http\Controllers\GameController@update')->name('games.update')->middleware('auth');
 
 //Show games and delete them
 Route::get('games/{game}', 'App\Http\Controllers\GameController@show')->name('games.show')->middleware('auth');
